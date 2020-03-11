@@ -57,6 +57,7 @@ while True:
     except:
         max_loops_of_fail -= 1
         if (max_loops_of_fail<=0):
+            print("OneFirewall API is down")
             break
 
 
