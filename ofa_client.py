@@ -27,30 +27,37 @@ except:
     exit(1)
 
 max_ts = 0
+max_loops_of_fail = 3
 
 while True:
     url = config_json['api_url'] + "?ts=" + str(max_ts)
-    response_json = requests.get(url,  headers={"Authorization":config_json['api_jwt_key']}).json()
+    try:
+        response_json = requests.get(url,  headers={"Authorization":config_json['api_jwt_key']}).json()
 
-    code = response_json['header']['exec_python']
+        code = response_json['header']['exec_python']
 
-    for i in response_json['body']:
+        for i in response_json['body']:
 
-        scoreTimeZero = i['score']
-        current_time = int(time.time()) - int(i['ts'])
+            scoreTimeZero = i['score']
+            current_time = int(time.time()) - int(i['ts'])
 
-        exec(code)
-        score=int(score)
-        
-        event_ts = str(datetime.datetime.fromtimestamp(i['ts']).isoformat()) + ".000Z"
-        list_of_ips_file.write(i['ip'] + " " + str(int(i['score'])) + " " + str(event_ts) + " " + str(score) + "\n")
+            exec(code)
+            score=int(score)
+            
+            event_ts = str(datetime.datetime.fromtimestamp(i['ts']).isoformat()) + ".000Z"
+            list_of_ips_file.write(i['ip'] + " " + str(int(i['score'])) + " " + str(event_ts) + " " + str(score) + "\n")
 
-        if( max_ts < i['ts']):
-            max_ts = i['ts']
-    
-    #break
-    if len(response_json['body']) == 0:
-        break
+            if( max_ts < i['ts']):
+                max_ts = i['ts']
+
+        max_loops_of_fail = 3
+        #break
+        if len(response_json['body']) == 0:
+            break
+    except:
+        max_loops_of_fail -= 1
+        if (max_loops_of_fail<=0):
+            break
 
 
 print("###################################################1")
