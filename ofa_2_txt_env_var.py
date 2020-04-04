@@ -13,8 +13,8 @@ import os
 print("#############################################################################")
 print("                                Download OFA IPs                             ")
 print("                                                                             ")
-print("     export api_url=https://app.onefirewall.com/api/v1/ips            ")
-print("     export api_jwt_key=xxxxxxxxx                                            ")
+print("        export api_url=https://app.onefirewall.com/api/v1/ips                ")
+print("        export api_jwt_key=xxxxxxxxx                                         ")
 print("                                                                             ")
 print("#############################################################################")
 print("")
@@ -56,7 +56,7 @@ while True:
                 max_ts = i['ts']
 
         max_loops_of_fail = 3
-        break
+        #break
         if len(response_json['body']) == 0:
             break
     except:
@@ -66,5 +66,5 @@ while True:
             break
 
 
-print("###################################################1")
-print("###################################################1")
+print("###################################################")
+print("###################################################")

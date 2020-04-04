@@ -3,7 +3,7 @@
 #docker images
 #docker ps
 export api_url=https://app.onefirewall.com/api/v1/ips
-export api_jwt_key=
+export api_jwt_key=xxxx
 
 PULL_COMMAND=`docker pull onefirewall/ofa2elasticsearch:latest | grep "Status: Image is up to date for onefirewall/ofa2elasticsearch:latest"`
 if [ "$PULL_COMMAND" != "Status: Image is up to date for onefirewall/ofa2elasticsearch:latest" ];then
