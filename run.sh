@@ -15,14 +15,14 @@
 ls -l
 #ifconfig
 curl http://172.17.0.1:9200/
-curl http://192.168.43.56:9200/
-#/usr/share/logstash/bin/logstash -f logstash.conf --config.reload.automatic &
+#curl http://192.168.43.56:9200/
+/usr/share/logstash/bin/logstash -f logstash.conf --config.reload.automatic &
 
-#while true
-#do
-#   python3 ofa_2_txt_env_var.py
-#   ls -l ofa_2_txt_env_var.py
-#   sleep 30
-#done
-#echo 'end'
+while true
+do
+   python3 ofa_2_txt_env_var.py
+   ls -l ofa_2_txt_env_var.py
+   sleep 30
+done
+echo 'end'
 
