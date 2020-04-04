@@ -29,8 +29,10 @@ api_jwt_key = os.getenv('api_jwt_key')
 
 print(api_url)
 
-max_ts = 0
+max_ts = int(time.time()) - (3600) # Starting scanning from the last hour
 max_loops_of_fail = 3
+
+print(time.time())
 
 while True:
     url = api_url + "?ts=" + str(max_ts)
